@@ -9,12 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.95.2",
+    "@tanstack/react-query-devtools": "^5.95.2",
     "axios": "^1.13.6",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.95.2",
     "eslint": "^9",
     "eslint-config-next": "16.1.6"
   }
