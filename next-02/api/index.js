@@ -21,6 +21,31 @@ export const addTask = async (newTask) => {
   const { data } = await axios.post(urlBase, newTask, {
     headers: headersJson,
   });
-  console.log("retorno da nova task vinda do back4app: ", data);
+  return data;
+};
+
+export const updateTask = async (updatedTask) => {
+  console.log("API updatedTask", updatedTask);
+  const { data } = await axios.put(
+    `https://parseapi.back4app.com/classes/Task/${updatedTask.objectId}`,
+    {
+      description: updatedTask.description,
+      done: updatedTask.done,
+    },
+    {
+      headers: headersJson,
+    },
+  );
+  console.log("updatedTask: ", data);
+  return data;
+};
+
+export const deleteTask = async (task) => {
+  const { data } = await axios.delete(
+    `https://parseapi.back4app.com/classes/Task/${task.objectId}`,
+    {
+      headers,
+    },
+  );
   return data;
 };
