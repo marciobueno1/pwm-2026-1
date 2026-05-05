@@ -1,5 +1,7 @@
+import Task from "@/components/Task";
+import { Link } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function Index() {
   const [idade, setIdade] = useState("");
@@ -12,32 +14,44 @@ export default function Index() {
     return (anoAtual - idadeNum).toString();
   }
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+    >
       <Text style={styles.title}>Olá Turma!!!</Text>
       <View style={styles.hr} />
-      <Text>Digite a sua idade</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        value={idade}
-        onChangeText={setIdade}
-      />
-      <Text>Você nasceu em</Text>
-      <TextInput
-        style={styles.input}
-        readOnly
-        value={calcularAnoNascimento()}
-      />
-    </View>
+      <View style={styles.containerIdade}>
+        <Text>Digite a sua idade</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          value={idade}
+          onChangeText={setIdade}
+        />
+        <Text>Você nasceu em</Text>
+        <TextInput
+          style={styles.input}
+          readOnly
+          value={calcularAnoNascimento()}
+        />
+        <View style={styles.hr} />
+        <Link href="myTodoList">Lista de Tarefas</Link>
+        <View style={styles.hr} />
+        <Task task={{ description: "Tarefa teste", done: true }} />
+        <Task task={{ description: "Outro teste", done: false }} />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "beige",
+  },
+  contentContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "beige",
   },
   title: {
     fontSize: 24,
@@ -48,6 +62,11 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: "black",
     marginVertical: 30,
+  },
+  containerIdade: {
+    backgroundColor: "yellow",
+    width: "90%",
+    alignItems: "center",
   },
   input: {
     height: 40,
